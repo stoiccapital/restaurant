@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute marketplace --local --file=./migrations/0001_init.sql",
+    "db:remote": "wrangler d1 execute marketplace --remote --file=./migrations/0001_init.sql",
+    "seed:local": "wrangler d1 execute marketplace --local --file=./migrations/0002_seed.sql",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.154.0"
+  }
+}

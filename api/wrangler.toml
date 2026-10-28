@@ -1,0 +1,13 @@
+name = "restaurants-marketplace-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "marketplace"
+database_id = "81389e8e-efb7-4d4e-8533-18d250f3f215"
+migrations_dir = "migrations"
+
+[vars]
+ENV = "dev"

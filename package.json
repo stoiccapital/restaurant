@@ -1,0 +1,12 @@
+{
+  "name": "restaurants-marketplace-v1",
+  "private": true,
+  "version": "0.0.1",
+  "packageManager": "pnpm@11.4.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "web": "pnpm --filter web",
+    "api": "pnpm --filter api"
+  }
+}
