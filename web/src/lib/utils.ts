@@ -5,8 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(cents: number, currency = 'EUR'): string {
-  const value = (cents / 100).toLocaleString('de-DE', {
+const BCP47: Record<string, string> = { en: 'en-GB', de: 'de-DE' };
+
+export function formatPrice(cents: number, currency = 'EUR', locale: string = 'de'): string {
+  const value = (cents / 100).toLocaleString(BCP47[locale] ?? 'de-DE', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
@@ -14,8 +16,8 @@ export function formatPrice(cents: number, currency = 'EUR'): string {
   return `${value} ${symbol}`;
 }
 
-export function formatDateTime(unixSeconds: number): string {
-  return new Date(unixSeconds * 1000).toLocaleString('de-DE', {
+export function formatDateTime(unixSeconds: number, locale: string = 'de'): string {
+  return new Date(unixSeconds * 1000).toLocaleString(BCP47[locale] ?? 'de-DE', {
     dateStyle: 'short',
     timeStyle: 'short',
   });

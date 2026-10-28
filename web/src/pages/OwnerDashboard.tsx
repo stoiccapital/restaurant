@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 import { api, type Restaurant } from '@/lib/api';
+import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +11,7 @@ import { RestaurantManager } from './RestaurantManager';
 type Owner = { id: string; email: string; name: string };
 
 export function OwnerDashboard({ owner, onSignOut }: { owner: Owner; onSignOut: () => void }) {
+  const { t } = useI18n();
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Restaurant | null>(null);
@@ -43,26 +45,26 @@ export function OwnerDashboard({ owner, onSignOut }: { owner: Owner; onSignOut: 
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="mb-8 flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Welcome, {owner.name}</h1>
+          <h1 className="text-2xl font-bold tracking-tight">{t('owner.welcome', { name: owner.name })}</h1>
           <p className="text-sm text-muted-foreground">{owner.email}</p>
         </div>
-        <Button variant="ghost" onClick={onSignOut}>Sign out</Button>
+        <Button variant="ghost" onClick={onSignOut}>{t('owner.sign_out')}</Button>
       </div>
 
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Your restaurants</h2>
+        <h2 className="text-lg font-semibold">{t('owner.your_restaurants')}</h2>
         <Button onClick={() => setCreating(true)}>
           <Plus className="h-4 w-4" />
-          Add restaurant
+          {t('owner.add_restaurant')}
         </Button>
       </div>
 
       {loading ? (
-        <p className="text-sm text-muted-foreground">Loading…</p>
+        <p className="text-sm text-muted-foreground">{t('common.loading')}</p>
       ) : restaurants.length === 0 ? (
         <Card>
           <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            You haven't added a restaurant yet.
+            {t('owner.no_restaurants_yet')}
           </CardContent>
         </Card>
       ) : (
@@ -78,12 +80,12 @@ export function OwnerDashboard({ owner, onSignOut }: { owner: Owner; onSignOut: 
               <CardContent className="space-y-3 text-sm">
                 <div className="text-muted-foreground">{r.address}, {r.city}</div>
                 <div className="flex flex-wrap gap-2">
-                  {r.pickup ? <Badge variant="muted">Pickup</Badge> : null}
-                  {r.delivers ? <Badge variant="muted">Delivery</Badge> : null}
+                  {r.pickup ? <Badge variant="muted">{t('fulfillment.pickup')}</Badge> : null}
+                  {r.delivers ? <Badge variant="muted">{t('fulfillment.delivery')}</Badge> : null}
                 </div>
                 <div className="flex gap-2 pt-1">
-                  <Button variant="outline" size="sm" onClick={() => setEditing(r)}>Edit</Button>
-                  <Button size="sm" onClick={() => setSelected(r)}>Manage</Button>
+                  <Button variant="outline" size="sm" onClick={() => setEditing(r)}>{t('common.edit')}</Button>
+                  <Button size="sm" onClick={() => setSelected(r)}>{t('owner.manage')}</Button>
                 </div>
               </CardContent>
             </Card>

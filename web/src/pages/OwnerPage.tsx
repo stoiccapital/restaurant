@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Store } from 'lucide-react';
 import { api, session } from '@/lib/api';
+import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { OwnerDashboard } from './OwnerDashboard';
 
 export function OwnerPage() {
+  const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -40,7 +42,8 @@ export function OwnerPage() {
       setOwner(r.owner);
       setPassword('');
     } catch (err) {
-      setError(humanizeAuthError((err as Error).message));
+      const code = (err as Error).message;
+      setError(t(`errors.${code}`) !== `errors.${code}` ? t(`errors.${code}`) : t('errors.generic'));
     } finally {
       setSubmitting(false);
     }
@@ -50,7 +53,7 @@ export function OwnerPage() {
     try {
       await api.signOutOwner();
     } catch {
-      // ignore — clear local state regardless
+      // ignore
     }
     session.clear();
     setOwner(null);
@@ -60,7 +63,7 @@ export function OwnerPage() {
   }
 
   if (!checked) {
-    return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-muted-foreground">Loading…</div>;
+    return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-muted-foreground">{t('common.loading')}</div>;
   }
 
   if (owner) {
@@ -73,11 +76,9 @@ export function OwnerPage() {
         <CardHeader>
           <div className="mb-2 flex items-center gap-2">
             <Store className="h-5 w-5 text-primary" />
-            <CardTitle>Restaurant owners</CardTitle>
+            <CardTitle>{t('owner.title')}</CardTitle>
           </div>
-          <CardDescription>
-            List your restaurant on Plates. 0% commission. You keep every euro.
-          </CardDescription>
+          <CardDescription>{t('owner.subtitle')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="mb-4 flex gap-1 rounded-md bg-muted p-1 text-sm">
@@ -86,30 +87,30 @@ export function OwnerPage() {
               className={`flex-1 rounded px-3 py-1.5 ${mode === 'signin' ? 'bg-background shadow-sm' : 'text-muted-foreground'}`}
               onClick={() => { setMode('signin'); setError(null); }}
             >
-              Sign in
+              {t('owner.sign_in')}
             </button>
             <button
               type="button"
               className={`flex-1 rounded px-3 py-1.5 ${mode === 'signup' ? 'bg-background shadow-sm' : 'text-muted-foreground'}`}
               onClick={() => { setMode('signup'); setError(null); }}
             >
-              Create account
+              {t('owner.create_account')}
             </button>
           </div>
 
           <form onSubmit={submit} className="space-y-3">
             {mode === 'signup' && (
               <div>
-                <Label htmlFor="name">Your name</Label>
+                <Label htmlFor="name">{t('owner.your_name')}</Label>
                 <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />
               </div>
             )}
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('owner.email')}</Label>
               <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
             </div>
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('owner.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -120,27 +121,16 @@ export function OwnerPage() {
                 autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
               />
               {mode === 'signup' && (
-                <p className="mt-1 text-xs text-muted-foreground">At least 8 characters.</p>
+                <p className="mt-1 text-xs text-muted-foreground">{t('owner.password_hint')}</p>
               )}
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full" disabled={submitting}>
-              {submitting ? '…' : mode === 'signin' ? 'Sign in' : 'Create account'}
+              {submitting ? t('common.working') : mode === 'signin' ? t('owner.sign_in') : t('owner.create_account')}
             </Button>
           </form>
         </CardContent>
       </Card>
     </div>
   );
-}
-
-function humanizeAuthError(code: string): string {
-  switch (code) {
-    case 'invalid_credentials': return 'Email or password is incorrect.';
-    case 'password_not_set': return 'This account was created without a password. Use "Create account" with the same email to set one.';
-    case 'email_already_registered': return 'An account with this email already exists. Try signing in instead.';
-    case 'password_too_short': return 'Password must be at least 8 characters.';
-    case 'missing_fields': return 'Please fill in all fields.';
-    default: return code;
-  }
 }

@@ -1,0 +1,134 @@
+{
+  "lang": "en",
+  "lang_label": "EN",
+  "nav": {
+    "tagline": "direct from local restaurants · 0% commission",
+    "browse": "Browse",
+    "for_restaurants": "For restaurants",
+    "cart": "Cart"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "placing": "Placing…",
+    "working": "…",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "home": {
+    "hero_title": "Order direct from local restaurants.",
+    "hero_subtitle": "Browse real menus, see real prices. The restaurant delivers or you pick up — they decide. Plates takes 0% commission, so the price you see is the price they get.",
+    "search_placeholder": "Search restaurants, dishes, cuisine…",
+    "section_restaurants": "Restaurants",
+    "section_dishes": "Popular dishes",
+    "no_restaurants_match": "No restaurants match your search.",
+    "no_dishes_match": "No dishes match your search."
+  },
+  "fulfillment": {
+    "pickup": "Pickup",
+    "delivery": "Delivery",
+    "pickup_available": "Pickup available",
+    "pickup_only": "Pickup only",
+    "unavailable": "unavailable",
+    "does_not_deliver": "This restaurant does not deliver"
+  },
+  "restaurant": {
+    "back_to_browse": "← Back to browse",
+    "no_offers": "No offers available right now."
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "from": "From",
+    "subtotal": "Subtotal",
+    "fine_print": "Delivery fee (if any) added at checkout. Plates takes 0% commission — the restaurant keeps the full price.",
+    "checkout": "Checkout",
+    "switch_restaurant_confirm": "Your cart has items from another restaurant. Clear it and start fresh?"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Pay the restaurant directly on delivery or pickup.",
+    "name": "Name",
+    "phone": "Phone",
+    "phone_placeholder": "+49 …",
+    "email_optional": "Email (optional)",
+    "delivery_address": "Delivery address",
+    "note_optional": "Note (optional)",
+    "items": "Items",
+    "delivery_fee": "Delivery",
+    "total": "Total",
+    "place_order": "Place order",
+    "order_placed": "Order placed · the restaurant will call to confirm"
+  },
+  "owner": {
+    "title": "Restaurant owners",
+    "subtitle": "List your restaurant on Plates. 0% commission. You keep every euro.",
+    "sign_in": "Sign in",
+    "create_account": "Create account",
+    "your_name": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "password_hint": "At least 8 characters.",
+    "welcome": "Welcome, {name}",
+    "sign_out": "Sign out",
+    "your_restaurants": "Your restaurants",
+    "add_restaurant": "Add restaurant",
+    "no_restaurants_yet": "You haven't added a restaurant yet.",
+    "manage": "Manage"
+  },
+  "restaurant_form": {
+    "add": "Add restaurant",
+    "edit": "Edit restaurant",
+    "name": "Name",
+    "cuisine": "Cuisine",
+    "cuisine_placeholder": "e.g. Italian",
+    "city": "City",
+    "address": "Address",
+    "phone": "Phone",
+    "description": "Description",
+    "offer_pickup": "Offer pickup",
+    "offer_delivery": "Offer delivery",
+    "delivery_fee_label": "Delivery fee (€)",
+    "radius_label": "Radius (km)"
+  },
+  "manager": {
+    "back": "← Back to your restaurants",
+    "tab_offers": "Menu / offers",
+    "tab_orders": "Orders",
+    "add_offer": "Add offer",
+    "no_offers": "No offers yet. Add your first dish to start selling.",
+    "hidden_badge": "Hidden",
+    "delete_offer_confirm": "Delete {name}?",
+    "no_orders": "No orders yet."
+  },
+  "offer_form": {
+    "add": "Add offer",
+    "edit": "Edit offer",
+    "name": "Name",
+    "description": "Description",
+    "category": "Category",
+    "category_placeholder": "e.g. Pizza",
+    "price_label": "Price (€)",
+    "visible": "Visible to customers"
+  },
+  "status": {
+    "placed": "Placed",
+    "accepted": "Accepted",
+    "ready": "Ready",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "errors": {
+    "invalid_credentials": "Email or password is incorrect.",
+    "password_not_set": "This account was created without a password. Use \"Create account\" with the same email to set one.",
+    "email_already_registered": "An account with this email already exists. Try signing in instead.",
+    "password_too_short": "Password must be at least 8 characters.",
+    "missing_fields": "Please fill in all fields.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "footer": "Plates — direct from local restaurants. 0% commission. No upsell. No fees for owners."
+}

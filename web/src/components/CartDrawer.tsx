@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '@/lib/cart';
+import { useI18n } from '@/lib/i18n';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -9,6 +10,7 @@ import { CheckoutDialog } from './CheckoutDialog';
 
 export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { lines, totalCents, add, dec, remove, restaurantId } = useCart();
+  const { t, locale } = useI18n();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const currency = lines[0]?.offer.currency ?? 'EUR';
 
@@ -16,17 +18,15 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogHeader>
-          <DialogTitle>Your cart</DialogTitle>
+          <DialogTitle>{t('cart.title')}</DialogTitle>
         </DialogHeader>
 
         {lines.length === 0 ? (
-          <div className="py-8 text-center text-sm text-muted-foreground">
-            Your cart is empty.
-          </div>
+          <div className="py-8 text-center text-sm text-muted-foreground">{t('cart.empty')}</div>
         ) : (
           <div className="space-y-4">
             <div className="text-xs text-muted-foreground">
-              From{' '}
+              {t('cart.from')}{' '}
               <Link
                 to={`/r/${lines[0].restaurant_slug}`}
                 className="font-medium text-foreground hover:underline"
@@ -41,7 +41,7 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
                   <div className="flex-1">
                     <div className="font-medium">{line.offer.name}</div>
                     <div className="num mt-1 text-sm text-muted-foreground">
-                      {formatPrice(line.offer.price_cents, line.offer.currency)} ×{' '}
+                      {formatPrice(line.offer.price_cents, line.offer.currency, locale)} ×{' '}
                       <span className="num">{line.quantity}</span>
                     </div>
                   </div>
@@ -73,15 +73,11 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
             </ul>
 
             <div className="flex items-center justify-between border-t pt-4">
-              <span className="text-sm font-medium">Subtotal</span>
-              <span className="num text-base font-semibold">{formatPrice(totalCents, currency)}</span>
+              <span className="text-sm font-medium">{t('cart.subtotal')}</span>
+              <span className="num text-base font-semibold">{formatPrice(totalCents, currency, locale)}</span>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Delivery fee (if any) added at checkout. Plates takes 0% commission — the restaurant keeps the full price.
-            </p>
-            <Button className="w-full" onClick={() => setCheckoutOpen(true)}>
-              Checkout
-            </Button>
+            <p className="text-xs text-muted-foreground">{t('cart.fine_print')}</p>
+            <Button className="w-full" onClick={() => setCheckoutOpen(true)}>{t('cart.checkout')}</Button>
           </div>
         )}
       </Dialog>

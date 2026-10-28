@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { MapPin, Phone, Truck, ShoppingBag, Plus } from 'lucide-react';
 import { api, type Offer, type Restaurant } from '@/lib/api';
 import { useCart } from '@/lib/cart';
+import { useI18n } from '@/lib/i18n';
 import { formatPrice } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +11,7 @@ import { Button } from '@/components/ui/button';
 
 export function RestaurantPage({ onCartOpen }: { onCartOpen: () => void }) {
   const { slug } = useParams<{ slug: string }>();
+  const { t, locale } = useI18n();
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
   const [offers, setOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,13 +41,13 @@ export function RestaurantPage({ onCartOpen }: { onCartOpen: () => void }) {
     return [...groups.entries()];
   }, [offers]);
 
-  if (loading) return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-muted-foreground">Loading…</div>;
+  if (loading) return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-muted-foreground">{t('common.loading')}</div>;
   if (error) return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-destructive">{error}</div>;
   if (!restaurant) return null;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      <Link to="/" className="text-sm text-muted-foreground hover:underline">← Back to browse</Link>
+      <Link to="/" className="text-sm text-muted-foreground hover:underline">{t('restaurant.back_to_browse')}</Link>
 
       <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -66,17 +68,22 @@ export function RestaurantPage({ onCartOpen }: { onCartOpen: () => void }) {
             )}
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
-            {restaurant.pickup ? <Badge variant="muted"><ShoppingBag className="mr-1 h-3 w-3" />Pickup available</Badge> : null}
+            {restaurant.pickup ? (
+              <Badge variant="muted">
+                <ShoppingBag className="mr-1 h-3 w-3" />
+                {t('fulfillment.pickup_available')}
+              </Badge>
+            ) : null}
             {restaurant.delivers ? (
               <Badge variant="muted">
                 <Truck className="mr-1 h-3 w-3" />
-                Delivery · <span className="num ml-1">{formatPrice(restaurant.delivery_fee_cents, 'EUR')}</span>
+                {t('fulfillment.delivery')} · <span className="num ml-1">{formatPrice(restaurant.delivery_fee_cents, 'EUR', locale)}</span>
                 {restaurant.delivery_radius_km > 0 && (
                   <span className="num ml-1 text-muted-foreground">· {restaurant.delivery_radius_km} km</span>
                 )}
               </Badge>
             ) : (
-              <Badge variant="outline">Pickup only</Badge>
+              <Badge variant="outline">{t('fulfillment.pickup_only')}</Badge>
             )}
           </div>
         </div>
@@ -84,7 +91,7 @@ export function RestaurantPage({ onCartOpen }: { onCartOpen: () => void }) {
 
       <div className="mt-8 space-y-8">
         {grouped.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No offers available right now.</p>
+          <p className="text-sm text-muted-foreground">{t('restaurant.no_offers')}</p>
         ) : (
           grouped.map(([category, items]) => (
             <section key={category}>
@@ -96,7 +103,7 @@ export function RestaurantPage({ onCartOpen }: { onCartOpen: () => void }) {
                       <div className="flex-1">
                         <div className="font-medium">{o.name}</div>
                         {o.description && <p className="mt-1 text-sm text-muted-foreground">{o.description}</p>}
-                        <div className="num mt-2 text-sm font-semibold">{formatPrice(o.price_cents, o.currency)}</div>
+                        <div className="num mt-2 text-sm font-semibold">{formatPrice(o.price_cents, o.currency, locale)}</div>
                       </div>
                       <Button
                         size="icon"

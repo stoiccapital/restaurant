@@ -46,7 +46,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const add = useCallback<CartCtx['add']>((offer, restaurant) => {
     setState((prev) => {
       if (prev.restaurantId && prev.restaurantId !== restaurant.id) {
-        if (!confirm('Your cart has items from another restaurant. Clear it and start fresh?')) {
+        const msg = localStorage.getItem('locale') === 'de'
+          ? 'Dein Warenkorb enthält Artikel aus einem anderen Restaurant. Leeren und neu starten?'
+          : 'Your cart has items from another restaurant. Clear it and start fresh?';
+        if (!confirm(msg)) {
           return prev;
         }
         return {

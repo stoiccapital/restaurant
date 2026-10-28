@@ -1,0 +1,134 @@
+{
+  "lang": "de",
+  "lang_label": "DE",
+  "nav": {
+    "tagline": "direkt vom Restaurant · 0 % Provision",
+    "browse": "Entdecken",
+    "for_restaurants": "Für Restaurants",
+    "cart": "Warenkorb"
+  },
+  "common": {
+    "loading": "Lädt…",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "placing": "Wird gesendet…",
+    "working": "…",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "home": {
+    "hero_title": "Direkt beim Restaurant um die Ecke bestellen.",
+    "hero_subtitle": "Echte Speisekarten, echte Preise. Das Restaurant liefert oder du holst ab — sie entscheiden. Plates nimmt 0 % Provision, der Preis, den du siehst, ist der Preis, den sie bekommen.",
+    "search_placeholder": "Restaurants, Gerichte, Küche suchen…",
+    "section_restaurants": "Restaurants",
+    "section_dishes": "Beliebte Gerichte",
+    "no_restaurants_match": "Keine Restaurants gefunden.",
+    "no_dishes_match": "Keine Gerichte gefunden."
+  },
+  "fulfillment": {
+    "pickup": "Abholung",
+    "delivery": "Lieferung",
+    "pickup_available": "Abholung möglich",
+    "pickup_only": "Nur Abholung",
+    "unavailable": "nicht verfügbar",
+    "does_not_deliver": "Dieses Restaurant liefert nicht"
+  },
+  "restaurant": {
+    "back_to_browse": "← Zurück zur Übersicht",
+    "no_offers": "Aktuell keine Angebote verfügbar."
+  },
+  "cart": {
+    "title": "Dein Warenkorb",
+    "empty": "Dein Warenkorb ist leer.",
+    "from": "Von",
+    "subtotal": "Zwischensumme",
+    "fine_print": "Liefergebühr (falls vorhanden) wird beim Checkout hinzugefügt. Plates nimmt 0 % Provision — das Restaurant behält den vollen Preis.",
+    "checkout": "Zur Kasse",
+    "switch_restaurant_confirm": "Dein Warenkorb enthält Artikel aus einem anderen Restaurant. Leeren und neu starten?"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "subtitle": "Bezahle direkt beim Restaurant bei Lieferung oder Abholung.",
+    "name": "Name",
+    "phone": "Telefon",
+    "phone_placeholder": "+49 …",
+    "email_optional": "E-Mail (optional)",
+    "delivery_address": "Lieferadresse",
+    "note_optional": "Hinweis (optional)",
+    "items": "Artikel",
+    "delivery_fee": "Lieferung",
+    "total": "Gesamt",
+    "place_order": "Bestellen",
+    "order_placed": "Bestellung aufgegeben · das Restaurant ruft dich zur Bestätigung an"
+  },
+  "owner": {
+    "title": "Für Restaurant-Betreiber",
+    "subtitle": "Liste dein Restaurant bei Plates. 0 % Provision. Du behältst jeden Euro.",
+    "sign_in": "Anmelden",
+    "create_account": "Konto erstellen",
+    "your_name": "Dein Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "password_hint": "Mindestens 8 Zeichen.",
+    "welcome": "Willkommen, {name}",
+    "sign_out": "Abmelden",
+    "your_restaurants": "Deine Restaurants",
+    "add_restaurant": "Restaurant hinzufügen",
+    "no_restaurants_yet": "Du hast noch kein Restaurant hinzugefügt.",
+    "manage": "Verwalten"
+  },
+  "restaurant_form": {
+    "add": "Restaurant hinzufügen",
+    "edit": "Restaurant bearbeiten",
+    "name": "Name",
+    "cuisine": "Küche",
+    "cuisine_placeholder": "z. B. Italienisch",
+    "city": "Stadt",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "description": "Beschreibung",
+    "offer_pickup": "Abholung anbieten",
+    "offer_delivery": "Lieferung anbieten",
+    "delivery_fee_label": "Liefergebühr (€)",
+    "radius_label": "Radius (km)"
+  },
+  "manager": {
+    "back": "← Zurück zu deinen Restaurants",
+    "tab_offers": "Speisekarte / Angebote",
+    "tab_orders": "Bestellungen",
+    "add_offer": "Angebot hinzufügen",
+    "no_offers": "Noch keine Angebote. Füge dein erstes Gericht hinzu.",
+    "hidden_badge": "Ausgeblendet",
+    "delete_offer_confirm": "{name} löschen?",
+    "no_orders": "Noch keine Bestellungen."
+  },
+  "offer_form": {
+    "add": "Angebot hinzufügen",
+    "edit": "Angebot bearbeiten",
+    "name": "Name",
+    "description": "Beschreibung",
+    "category": "Kategorie",
+    "category_placeholder": "z. B. Pizza",
+    "price_label": "Preis (€)",
+    "visible": "Für Kunden sichtbar"
+  },
+  "status": {
+    "placed": "Eingegangen",
+    "accepted": "Angenommen",
+    "ready": "Bereit",
+    "completed": "Abgeschlossen",
+    "cancelled": "Storniert"
+  },
+  "errors": {
+    "invalid_credentials": "E-Mail oder Passwort ist falsch.",
+    "password_not_set": "Dieses Konto wurde ohne Passwort erstellt. Nutze „Konto erstellen\" mit derselben E-Mail, um ein Passwort zu setzen.",
+    "email_already_registered": "Es existiert bereits ein Konto mit dieser E-Mail. Melde dich stattdessen an.",
+    "password_too_short": "Passwort muss mindestens 8 Zeichen lang sein.",
+    "missing_fields": "Bitte alle Felder ausfüllen.",
+    "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+  },
+  "footer": "Plates — direkt vom Restaurant. 0 % Provision. Kein Upsell. Keine Gebühren für Betreiber."
+}

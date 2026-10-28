@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { api, type Restaurant } from '@/lib/api';
+import { useI18n } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,7 @@ type Props =
   | { mode: 'edit'; restaurant: Restaurant; onClose: () => void; onSaved: () => void };
 
 export function RestaurantForm(props: Props) {
+  const { t } = useI18n();
   const existing = props.mode === 'edit' ? props.restaurant : null;
   const [name, setName] = useState(existing?.name ?? '');
   const [cuisine, setCuisine] = useState(existing?.cuisine ?? '');
@@ -60,53 +62,53 @@ export function RestaurantForm(props: Props) {
   return (
     <Dialog open onOpenChange={(o) => !o && props.onClose()}>
       <DialogHeader>
-        <DialogTitle>{props.mode === 'create' ? 'Add restaurant' : 'Edit restaurant'}</DialogTitle>
+        <DialogTitle>{props.mode === 'create' ? t('restaurant_form.add') : t('restaurant_form.edit')}</DialogTitle>
       </DialogHeader>
       <form onSubmit={submit} className="space-y-3">
         <div>
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">{t('restaurant_form.name')}</Label>
           <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <Label htmlFor="cuisine">Cuisine</Label>
-            <Input id="cuisine" required value={cuisine} onChange={(e) => setCuisine(e.target.value)} placeholder="e.g. Italian" />
+            <Label htmlFor="cuisine">{t('restaurant_form.cuisine')}</Label>
+            <Input id="cuisine" required value={cuisine} onChange={(e) => setCuisine(e.target.value)} placeholder={t('restaurant_form.cuisine_placeholder')} />
           </div>
           <div>
-            <Label htmlFor="city">City</Label>
+            <Label htmlFor="city">{t('restaurant_form.city')}</Label>
             <Input id="city" required value={city} onChange={(e) => setCity(e.target.value)} />
           </div>
         </div>
         <div>
-          <Label htmlFor="address">Address</Label>
+          <Label htmlFor="address">{t('restaurant_form.address')}</Label>
           <Input id="address" required value={address} onChange={(e) => setAddress(e.target.value)} />
         </div>
         <div>
-          <Label htmlFor="phone">Phone</Label>
+          <Label htmlFor="phone">{t('restaurant_form.phone')}</Label>
           <Input id="phone" value={phone ?? ''} onChange={(e) => setPhone(e.target.value)} />
         </div>
         <div>
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">{t('restaurant_form.description')}</Label>
           <Textarea id="description" value={description ?? ''} onChange={(e) => setDescription(e.target.value)} />
         </div>
 
         <div className="space-y-2 rounded-md border p-3">
           <div className="flex items-center gap-2">
             <input id="pickup" type="checkbox" checked={pickup} onChange={(e) => setPickup(e.target.checked)} />
-            <Label htmlFor="pickup">Offer pickup</Label>
+            <Label htmlFor="pickup">{t('restaurant_form.offer_pickup')}</Label>
           </div>
           <div className="flex items-center gap-2">
             <input id="delivers" type="checkbox" checked={delivers} onChange={(e) => setDelivers(e.target.checked)} />
-            <Label htmlFor="delivers">Offer delivery</Label>
+            <Label htmlFor="delivers">{t('restaurant_form.offer_delivery')}</Label>
           </div>
           {delivers && (
             <div className="grid grid-cols-2 gap-3 pt-2">
               <div>
-                <Label htmlFor="fee">Delivery fee (€)</Label>
+                <Label htmlFor="fee">{t('restaurant_form.delivery_fee_label')}</Label>
                 <Input id="fee" type="number" step="0.01" min="0" value={deliveryFeeEuros} onChange={(e) => setDeliveryFeeEuros(e.target.value)} />
               </div>
               <div>
-                <Label htmlFor="radius">Radius (km)</Label>
+                <Label htmlFor="radius">{t('restaurant_form.radius_label')}</Label>
                 <Input id="radius" type="number" min="0" value={deliveryRadius} onChange={(e) => setDeliveryRadius(e.target.value)} />
               </div>
             </div>
@@ -116,8 +118,8 @@ export function RestaurantForm(props: Props) {
         {error && <p className="text-sm text-destructive">{error}</p>}
 
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={props.onClose}>Cancel</Button>
-          <Button type="submit" disabled={submitting}>{submitting ? '…' : 'Save'}</Button>
+          <Button type="button" variant="outline" onClick={props.onClose}>{t('common.cancel')}</Button>
+          <Button type="submit" disabled={submitting}>{submitting ? t('common.working') : t('common.save')}</Button>
         </DialogFooter>
       </form>
     </Dialog>
